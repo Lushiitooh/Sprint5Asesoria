@@ -6,9 +6,6 @@ import java.time.LocalDate;
 
 
 @Data
-@Getter
-@Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente{
