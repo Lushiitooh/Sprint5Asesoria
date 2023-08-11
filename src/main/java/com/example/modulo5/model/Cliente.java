@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Cliente extends Usuario{
 
     private int id;
