@@ -21,7 +21,7 @@ public class Cliente extends Usuario{
     private String direccion;
     private int telefono;
     private String correo_electronico;
-    private LocalDate fechaingreso = new LocalDate ();
+    private LocalDate fechaingreso;
 
 
 
