@@ -23,6 +23,4 @@ public class Usuario {
     private String password;
     private int id_cliente;
     private boolean estado;
-
-
 }
