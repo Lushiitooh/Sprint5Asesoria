@@ -10,4 +10,5 @@ public interface IAsesoria {
     public List<Asesoria> listarAsesoriaCliente(int idCliente);
     public Asesoria actualizarAsesoria(Asesoria asesoria);
     public boolean eliminarAsesoria(int idAsesoria);
+    public boolean actualizarEstadoAsesoria(int idAsesoria);
 }

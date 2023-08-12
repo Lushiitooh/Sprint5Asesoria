@@ -22,6 +22,7 @@ public class Usuario {
     private String usuario_ingreso;
     private String password;
     private int id_cliente;
+    private boolean estado;
 
 
 }

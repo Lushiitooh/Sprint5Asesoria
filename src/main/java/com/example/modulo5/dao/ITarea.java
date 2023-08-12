@@ -11,5 +11,4 @@ public interface ITarea {
     public List<Tarea> listarTareasAsesoria(int idAsesoria);
     public Tarea actualizarTarea(Tarea tarea);
     public  boolean eliminarTarea(int idTarea);
-
 }

@@ -7,10 +7,7 @@ import java.util.List;
 public interface ICliente {
     public Cliente crearCliente(Cliente cliente);
     public List<Cliente> listarCliente();
-
     public  Cliente listarClienteId(int idCliente);
-
     public Cliente actualizarCliente(Cliente cliente);
-
     public boolean eliminarCliente(int idCliente);
 }

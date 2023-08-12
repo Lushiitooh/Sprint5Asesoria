@@ -8,9 +8,8 @@ public interface IUsuario {
 
     public Usuario crearUsuario(Usuario usuario);
     public List<Usuario> listarUsuarios();
-    public List<Usuario> listarUsarioPorTipo(int tipoUsuario);
+    public List<Usuario> listarUsuarioPorTipo(int tipoUsuario);
     public Usuario actualizarUsuario(Usuario usuario);
     public boolean eliminarUsuario(Usuario usuario);
-    //public boolean actualizarEstadoUsuario(Usuario usuario);
-
+    public boolean actualizarEstadoUsuario(Usuario usuario);
 }

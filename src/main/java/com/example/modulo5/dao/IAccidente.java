@@ -10,5 +10,5 @@ public interface IAccidente {
     public List<Accidente> listarAccidenteTrabajador(int idTrabajador);
     public Accidente actualizarAccidente(Accidente accidente);
     public boolean eliminarAccidente (int idAccidente);
-    public boolean actualizaAccidente (int idAccidente);
+    public boolean actualizarEstadoAccidente (int idAccidente);
 }
