@@ -8,7 +8,7 @@ public interface ICliente {
     public Cliente crearCliente(Cliente cliente);
     public List<Cliente> listarCliente();
 
-    public  List<Cliente> listarClienteId(int idCliente);
+    public  Cliente listarClienteId(int idCliente);
 
     public Cliente actualizarCliente(Cliente cliente);
 
