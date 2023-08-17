@@ -4,23 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class Usuario {
     private int id;
     private int rut;
     private String nombres;
     private String apellido1;
     private String apellido2;
-    private String correo_electronico;
-    private int telefono;
+    private String correoElectronico;
+    private String telefono;
     private String direccion;
-    private int id_tipo_usuario;
-    private String usuario_ingreso;
+    private int idTipoUsuario;
+    private String usuarioIngreso;
     private String password;
-    private int id_cliente;
+    private LocalDateTime fechaRegistro;
+    private int idCliente;
     private boolean estado;
 }
