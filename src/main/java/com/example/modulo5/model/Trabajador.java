@@ -1,8 +1,11 @@
 package com.example.modulo5.model;
 
+import jakarta.ejb.Local;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -10,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 public class Trabajador {
     private int id;
-    private int idCliente;
     private String rut;
     private String nombres;
     private String apellido1;
@@ -18,5 +20,7 @@ public class Trabajador {
     private String area;
     private String correoElectronico;
     private String cargo;
+    private int idCliente;
+    private LocalDateTime fechaIngreso;
 
 }

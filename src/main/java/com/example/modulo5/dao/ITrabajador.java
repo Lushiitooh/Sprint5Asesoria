@@ -1,7 +1,5 @@
 package com.example.modulo5.dao;
 
-import com.example.modulo5.model.Capacitacion;
-import com.example.modulo5.model.Cliente;
 import com.example.modulo5.model.Trabajador;
 
 import java.util.List;
@@ -9,7 +7,7 @@ import java.util.List;
 public interface ITrabajador {
     public Trabajador crearTrabajador(Trabajador trabajador);
     public List<Trabajador> listarTrabajador();
-    public Trabajador listarTrabajadorId(int idTrabajador);
+    public List<Trabajador> listarTrabajadorId(int idTrabajador);
     public List<Trabajador> listarTrabajadorIdCliente(int idCliente);
     public Trabajador listarTrabajadorRut(String rutTrabajador);
     public Trabajador actualizarTrabajador(Trabajador trabajador);
