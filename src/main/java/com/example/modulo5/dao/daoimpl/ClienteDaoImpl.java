@@ -35,6 +35,7 @@ public class ClienteDaoImpl implements ICliente {
                     +cliente.getFechaingreso()+
                     ")");
             creado = true;
+            objStatement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
