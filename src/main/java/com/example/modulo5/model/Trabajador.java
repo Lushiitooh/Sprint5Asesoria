@@ -23,4 +23,5 @@ public class Trabajador {
     private int idCliente;
     private LocalDateTime fechaIngreso;
 
+
 }

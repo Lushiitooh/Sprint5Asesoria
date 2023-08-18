@@ -54,18 +54,18 @@ public class TrabajadorDaoImpl implements ITrabajador {
 
     @Override
     public List<Trabajador> listarTrabajadorId(int idTrabajador) {
-        List<Trabajador> listaTrabajadores = new ArrayList<>();
+        List<Trabajador> listaTrabajadoresId = new ArrayList<>();
         Statement objStatement = null;
         Connection objConnection = null;
         ResultSet objResultSet = null;
-        Trabajador trabajador;
+        Trabajador trabajadorId;
 
         try{
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from trabajadores where id =" + idTrabajador);
             while (objResultSet.next()) {
-                trabajador = new Trabajador(objResultSet.getInt(1),
+                trabajadorId = new Trabajador(objResultSet.getInt(1),
                         objResultSet.getString(2),
                         objResultSet.getString(3),
                         objResultSet.getString(4),
@@ -75,30 +75,30 @@ public class TrabajadorDaoImpl implements ITrabajador {
                         objResultSet.getString(8),
                         objResultSet.getInt(9),
                         LocalDateTime.parse(objResultSet.getString(10)));
-
+                listaTrabajadoresId.add(trabajadorId);
             }
             objResultSet.close();
             objStatement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaTrabajadores;
+        return listaTrabajadoresId;
     }
 
     @Override
     public List<Trabajador> listarTrabajadorIdCliente(int idCliente) {
-        List<Trabajador> listaTrabajadores = new ArrayList<>();
+        List<Trabajador> listaTrabajadoresIdCliente = new ArrayList<>();
         Statement objStatement = null;
         Connection objConnection = null;
         ResultSet objResultSet = null;
-        Trabajador trabajador;
+        Trabajador trabajadorIdCliente;
 
         try{
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from trabajadores where id =" + idCliente);
             while (objResultSet.next()) {
-                trabajador = new Trabajador(objResultSet.getInt(1),
+                trabajadorIdCliente = new Trabajador(objResultSet.getInt(1),
                         objResultSet.getString(2),
                         objResultSet.getString(3),
                         objResultSet.getString(4),
@@ -108,6 +108,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
                         objResultSet.getString(8),
                         objResultSet.getInt(9),
                         LocalDateTime.parse(objResultSet.getString(10)));
+                listaTrabajadoresIdCliente.add(trabajadorIdCliente);
 
             }
             objResultSet.close();
@@ -115,7 +116,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaTrabajadores;
+        return listaTrabajadoresIdCliente;
     }
 
     @Override
