@@ -120,9 +120,39 @@ public class TrabajadorDaoImpl implements ITrabajador {
     }
 
     @Override
-    public Trabajador listarTrabajadorRut(String rutTrabajador) {
-        return null;
+    public List<Trabajador> listarTrabajadorRut(String rutTrabajador) {
+            List<Trabajador> listaTrabajadorRut = new ArrayList<>();
+            Statement objStatement = null;
+            Connection objConnection = null;
+            ResultSet objResultSet = null;
+            Trabajador trabajadorRut;
+
+            try{
+                objConnection = Conexion.getConexion();
+                objStatement = objConnection.createStatement();
+                objResultSet = objStatement.executeQuery("select * from trabajadores where rut =" + rutTrabajador);
+                while (objResultSet.next()) {
+                    trabajadorRut = new Trabajador(objResultSet.getInt(1),
+                            objResultSet.getString(2),
+                            objResultSet.getString(3),
+                            objResultSet.getString(4),
+                            objResultSet.getString(5),
+                            objResultSet.getString(6),
+                            objResultSet.getString(7),
+                            objResultSet.getString(8),
+                            objResultSet.getInt(9),
+                            LocalDateTime.parse(objResultSet.getString(10)));
+                    listaTrabajadorRut.add(trabajadorRut);
+
+                }
+                objResultSet.close();
+                objStatement.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return listaTrabajadorRut;
     }
+
 
     @Override
     public Trabajador actualizarTrabajador(Trabajador trabajador) {

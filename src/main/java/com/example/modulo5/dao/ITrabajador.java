@@ -9,7 +9,7 @@ public interface ITrabajador {
     public List<Trabajador> listarTrabajador();
     public List<Trabajador> listarTrabajadorId(int idTrabajador);
     public List<Trabajador> listarTrabajadorIdCliente(int idCliente);
-    public Trabajador listarTrabajadorRut(String rutTrabajador);
+    public List<Trabajador> listarTrabajadorRut(String rutTrabajador);
     public Trabajador actualizarTrabajador(Trabajador trabajador);
     public boolean eliminarTrabajador(int idTrabajador);
 }
