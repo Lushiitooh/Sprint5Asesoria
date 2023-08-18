@@ -70,7 +70,7 @@ public class ClienteDaoImpl implements ICliente {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from clientes where id ="+idCliente);
+            objResultSet = objStatement.executeQuery("select id, rut, razon_social, nombre_contacto, direccion, telefono, correo_electronico, fecha_ingreso, estado from clientes where id ="+idCliente);
             while (objResultSet.next()){
                 cliente = new Cliente(objResultSet.getInt(1),
                         objResultSet.getInt(2),

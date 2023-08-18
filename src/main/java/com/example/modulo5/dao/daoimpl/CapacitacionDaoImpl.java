@@ -29,7 +29,7 @@ public class CapacitacionDaoImpl implements ICapacitacion {
         try{
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from capacitaciones");
+            objResultSet = objStatement.executeQuery("select id, nombre, duracion, descripcion, fecha_ingreso, estado from capacitaciones");
             while (objResultSet.next()){
                 capacitacion = new Capacitacion(
                         objResultSet.getInt(1),

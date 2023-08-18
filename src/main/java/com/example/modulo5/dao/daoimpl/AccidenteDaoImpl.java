@@ -31,7 +31,7 @@ public class AccidenteDaoImpl implements IAccidente {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from accidente");
+            objResultSet = objStatement.executeQuery("select id, fecha_accidente, hora_accidente, id_trabajador, lugar_accidente, descripcion_accidente, tipo_accidente, id_cliente, fecha_ingreso from accidentes");
             while (objResultSet.next()){
                 accidente = new Accidente(objResultSet.getInt(1),
                         LocalDate.parse(objResultSet.getString(2)),
@@ -64,7 +64,7 @@ public class AccidenteDaoImpl implements IAccidente {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from accidente where id ="+idAccidente);
+            objResultSet = objStatement.executeQuery("select id, fecha_accidente, hora_accidente, id_trabajador, lugar_accidente, descripcion_accidente, tipo_accidente, id_cliente, fecha_ingreso from accidentes where id ="+idAccidente);
             while (objResultSet.next()) {
                 accidente = new Accidente(objResultSet.getInt(1),
                         LocalDate.parse(objResultSet.getString(2)),
@@ -97,7 +97,7 @@ public class AccidenteDaoImpl implements IAccidente {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from accidente where id_cliente ="+idCliente);
+            objResultSet = objStatement.executeQuery("select id, fecha_accidente, hora_accidente, id_trabajador, lugar_accidente, descripcion_accidente, tipo_accidente, id_cliente, fecha_ingreso from accidentes where id_cliente ="+idCliente);
             while (objResultSet.next()) {
                 accidente = new Accidente(objResultSet.getInt(1),
                         LocalDate.parse(objResultSet.getString(2)),
@@ -130,7 +130,7 @@ public class AccidenteDaoImpl implements IAccidente {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from accidente where id_trabajdor ="+idTrabajador);
+            objResultSet = objStatement.executeQuery("select id, fecha_accidente, hora_accidente, id_trabajador, lugar_accidente, descripcion_accidente, tipo_accidente, id_cliente, fecha_ingreso from accidentes where id_trabajador ="+idTrabajador);
             while (objResultSet.next()) {
                 accidente = new Accidente(objResultSet.getInt(1),
                         LocalDate.parse(objResultSet.getString(2)),

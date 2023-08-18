@@ -32,7 +32,7 @@ public class TareaDaoImpl implements ITarea {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from tareas");
+            objResultSet = objStatement.executeQuery("select id, nombre_tarea, descripcion, entregable, fecha_ejecucion, id_estado, id_tipo_tarea, id_asesoria, fecha_ingreso from tareas");
             while (objResultSet.next()){
                 tarea = new Tarea(objResultSet.getInt(1), //id
                         objResultSet.getString(2), // nombre tarea
@@ -66,7 +66,7 @@ public class TareaDaoImpl implements ITarea {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from tareas where id_tipo_tarea ="+idTiposTareas);
+            objResultSet = objStatement.executeQuery("select id, nombre_tarea, descripcion, entregable, fecha_ejecucion, id_estado, id_tipo_tarea, id_asesoria, fecha_ingreso from tareas where id_tipo_tarea ="+idTiposTareas);
             while (objResultSet.next()){
                 tarea = new Tarea(objResultSet.getInt(1), //id
                         objResultSet.getString(2), // nombre tarea
@@ -100,7 +100,7 @@ public class TareaDaoImpl implements ITarea {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from tareas where id_asesoria ="+idAsesoria);
+            objResultSet = objStatement.executeQuery("select id, nombre_tarea, descripcion, entregable, fecha_ejecucion, id_estado, id_tipo_tarea, id_asesoria, fecha_ingreso from tareas where id_asesoria ="+idAsesoria);
             while (objResultSet.next()){
                 tarea = new Tarea(objResultSet.getInt(1), //id
                         objResultSet.getString(2), // nombre tarea

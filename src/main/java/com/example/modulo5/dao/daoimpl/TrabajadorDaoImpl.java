@@ -96,7 +96,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
         try{
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from trabajadores where id =" + idCliente);
+            objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, area, correo_electronico, cargo, id_cliente, fecha_ingreso from trabajadores where id =" + idCliente);
             while (objResultSet.next()) {
                 trabajadorIdCliente = new Trabajador(objResultSet.getInt(1),
                         objResultSet.getString(2),
@@ -130,7 +130,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
             try{
                 objConnection = Conexion.getConexion();
                 objStatement = objConnection.createStatement();
-                objResultSet = objStatement.executeQuery("select * from trabajadores where rut =" + rutTrabajador);
+                objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, area, correo_electronico, cargo, id_cliente, fecha_ingreso from trabajadores where rut =" + rutTrabajador);
                 while (objResultSet.next()) {
                     trabajadorRut = new Trabajador(objResultSet.getInt(1),
                             objResultSet.getString(2),

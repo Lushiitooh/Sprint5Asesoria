@@ -63,7 +63,7 @@ public class AsesoriaDaoImpl implements IAsesoria {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from asesorias where id_cliente = " + idCliente);
+            objResultSet = objStatement.executeQuery("select id, nombre_asesoria, id_tipo_riesgo, descripcion_asesoria, id_cliente_peticion, fecha_ingreso, estado from asesorias inner join cliente_asesoria ca on asesorias.id = ca.id_asesoria where id_cliente =" + idCliente);
             while (objResultSet.next()){
                 asesoria = new Asesoria(
                         objResultSet.getInt(1),
