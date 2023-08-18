@@ -29,6 +29,7 @@ public class CapacitacionDaoImpl implements ICapacitacion {
                     +capacitacion.getEstadoCapacitacion()+
             ")");
             creado = true;
+            objStatement.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
