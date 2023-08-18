@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ClienteDaoImpl implements ICliente {
         Statement objStatement = null;
         Connection objConnection = null;
         ResultSet objResultSet = null;
-        Cliente cliente;
+        Cliente cliente = null;
 
         try{
             objConnection = Conexion.getConexion();
@@ -37,14 +38,15 @@ public class ClienteDaoImpl implements ICliente {
 
             while (objResultSet.next()){
                 cliente = new Cliente(objResultSet.getInt(1),
-                objResultSet.getString(2),
+                objResultSet.getInt(2),
                 objResultSet.getString(3),
                 objResultSet.getString(4),
                 objResultSet.getString(5),
-                objResultSet.getString(6),
+                objResultSet.getInt(6),
                 objResultSet.getString(7),
                 LocalDateTime.parse(objResultSet.getString(8)),
-                objResultSet.getBoolean(9);
+                objResultSet.getBoolean(9));
+
                 listaCliente.add(cliente);
             }
             objResultSet.close();

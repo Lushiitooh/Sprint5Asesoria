@@ -2,7 +2,7 @@ package com.example.modulo5.model;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -17,8 +17,7 @@ public class Cliente{
     private String direccion;
     private int telefono;
     private String correo_electronico;
-    private LocalDate fechaingreso;
-
-
+    private LocalDateTime fechaingreso;
+    private boolean estado;
 
 }
