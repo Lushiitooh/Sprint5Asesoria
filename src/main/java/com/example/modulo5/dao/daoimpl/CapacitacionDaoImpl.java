@@ -110,11 +110,31 @@ public class CapacitacionDaoImpl implements ICapacitacion {
 
     @Override
     public boolean eliminarCapacitacion(int idCapacitacion) {
-        return false;
+        boolean eliminar = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from capacitaciones where id =" +idCapacitacion);
+            eliminar=true;
+
+            objStatement.close();
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminar;
     }
 
     @Override
     public boolean actualizarEstadoCapacitacion(int idCapacitacion) {
+
+
         return false;
     }
 }
