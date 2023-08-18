@@ -18,8 +18,29 @@ public class ClienteDaoImpl implements ICliente {
 
 
     @Override
-    public Cliente crearCliente(Cliente cliente) {
-        return null;
+    public boolean crearCliente(Cliente cliente) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into clientes(id,rut,razon_social,nombre_contacto,direccion,telefono,correo_electronico,fecha_ingreso) values (null," +
+                    cliente.getRut()+","
+                    +cliente.getRazon_social()+","
+                    +cliente.getNombre_contacto()+","
+                    +cliente.getDireccion()+","
+                    +cliente.getTelefono()+","
+                    +cliente.getCorreo_electronico()+","
+                    +cliente.getFechaingreso()+
+                    ")");
+            creado = true;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
