@@ -52,6 +52,7 @@ public class ClienteDaoImpl implements ICliente {
             objResultSet.close();
             objStatement.close();
 
+
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -61,8 +62,38 @@ public class ClienteDaoImpl implements ICliente {
 
     @Override
     public Cliente listarClienteId(int idCliente) {
-        return null;
+        Cliente cliente;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        ResultSet objResultSet = null;
+
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objResultSet = objStatement.executeQuery("select * from clientes where id ="+idCliente);
+            while (objResultSet.next()){
+                cliente = new Cliente(objResultSet.getInt(1),
+                        objResultSet.getInt(2),
+                        objResultSet.getString(3),
+                        objResultSet.getString(4),
+                        objResultSet.getString(5),
+                        objResultSet.getInt(6),
+                        objResultSet.getString(7),
+                        LocalDateTime.parse(objResultSet.getString(8)),
+                        objResultSet.getBoolean(9));
+                objResultSet.close();
+                objStatement.close();
+                return cliente;
+            }
+            objResultSet.close();
+            objStatement.close();
+            //objConnection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    return null;
     }
+
 
 
 
