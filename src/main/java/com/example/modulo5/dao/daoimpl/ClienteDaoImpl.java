@@ -126,6 +126,26 @@ public class ClienteDaoImpl implements ICliente {
 
     @Override
     public boolean eliminarCliente(int idCliente) {
-        return false;
+
+        boolean eliminado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from clientes where id ="+idCliente);
+            eliminado=true;
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminado;
+
     }
+
+
 }
