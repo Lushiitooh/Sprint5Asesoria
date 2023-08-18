@@ -34,6 +34,7 @@ public class UsuarioDaoImpl implements IUsuario {
             objResultSet = objStatement.executeQuery("select * from usuarios");
             while (objResultSet.next()){
                 usuario = new Usuario(objResultSet.getInt(1),
+                        objResultSet.getInt(2),
                         objResultSet.getString(3),
                         objResultSet.getString(4),
                         objResultSet.getString(5),
