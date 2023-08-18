@@ -57,7 +57,36 @@ public class TareaDaoImpl implements ITarea {
 
     @Override
     public List<Tarea> listarTareasTipos(int idTiposTareas) {
-        return null;
+        List<Tarea> listatareas = new ArrayList<>();
+        Statement objStatement = null;
+        Connection objConnection = null;
+        ResultSet objResultSet = null;
+        Tarea tarea;
+
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objResultSet = objStatement.executeQuery("select * from tareas where id_tipo_tarea ="+idTiposTareas);
+            while (objResultSet.next()){
+                tarea = new Tarea(objResultSet.getInt(1), //id
+                        objResultSet.getString(2), // nombre tarea
+                        objResultSet.getString(3), // descripcion
+                        objResultSet.getString(4), // entregable
+                        LocalDate.parse(objResultSet.getString(9)), //fecha de ingreso
+                        LocalDate.parse(objResultSet.getString(5)), //fecha de ejecucion
+                        objResultSet.getInt(6), //id estado
+                        objResultSet.getInt(7), //id tipo tarea
+                        objResultSet.getInt(8) //id asesoria
+                );
+                listatareas.add(tarea);
+            }
+            objResultSet.close();
+            objStatement.close();
+            //objConnection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listatareas;
     }
 
     @Override
