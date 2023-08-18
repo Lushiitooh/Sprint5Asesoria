@@ -14,8 +14,27 @@ import java.util.List;
 
 public class CapacitacionDaoImpl implements ICapacitacion {
     @Override
-    public Capacitacion crearCapacitacion(Capacitacion capacitacion) {
-        return null;
+    public Boolean crearCapacitacion(Capacitacion capacitacion) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into capacitaciones(id, nombre, duracion, descripcion, fecha_ingreso, estado) values (null,"
+                    +capacitacion.getNombre()+","
+                    +capacitacion.getDuracion()+","
+                    +capacitacion.getDescripcion()+","
+                    +capacitacion.getFechaIngreso()+","
+                    +capacitacion.getEstadoCapacitacion()+
+            ")");
+            creado = true;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
