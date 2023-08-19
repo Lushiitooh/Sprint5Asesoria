@@ -15,8 +15,32 @@ import java.util.List;
 public class TrabajadorDaoImpl implements ITrabajador {
 
     @Override
-    public Trabajador crearTrabajador(Trabajador trabajador) {
-        return null;
+    public Boolean crearTrabajador(Trabajador trabajador) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into trabajadores(id, rut, nombres, apellido1, apellido2, area, correo_electronico, cargo, id_cliente, fecha_ingreso) values (null,"
+                                         +trabajador.getRut()+","
+                                         +trabajador.getNombres()+","
+                                         +trabajador.getApellido1()+","
+                                         +trabajador.getApellido2()+","
+                                         +trabajador.getArea()+","
+                                         +trabajador.getCorreoElectronico()+","
+                                         +trabajador.getCargo()+","
+                                         +trabajador.getIdCliente()+","
+                                         +trabajador.getFechaIngreso()+
+                                         ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
@@ -161,6 +185,24 @@ public class TrabajadorDaoImpl implements ITrabajador {
 
     @Override
     public boolean eliminarTrabajador(int idTrabajador) {
-        return false;
+
+        boolean eliminado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from trabajador where id ="+idTrabajador);
+            eliminado=true;
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminado;
+
     }
 }
