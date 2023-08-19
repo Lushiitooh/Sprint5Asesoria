@@ -19,5 +19,6 @@ public  class Accidente {
  private String descripcionAccidente;
  private String tipoAccidente;
  private int idCliente;
+ private LocalDate fechaIngreso;
 
 }

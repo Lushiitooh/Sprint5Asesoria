@@ -1,7 +1,5 @@
 package com.example.modulo5.conexion;
 
-import lombok.NoArgsConstructor;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

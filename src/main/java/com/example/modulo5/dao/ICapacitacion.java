@@ -7,7 +7,7 @@ import java.util.List;
 public interface ICapacitacion {
     public Capacitacion crearCapacitacion(Capacitacion capacitacion);
     public List<Capacitacion> listarCapacitacion();
-    public List<Capacitacion> listarCapacitacionUsuario(int idUsuario);
+    public List<Capacitacion> listarCapacitacionUsuario(int idCliente);
     public Capacitacion actualizarCapacitacion(Capacitacion capacitacion);
     public boolean eliminarCapacitacion (int idCapacitacion);
     public boolean actualizarEstadoCapacitacion(int idCapacitacion);

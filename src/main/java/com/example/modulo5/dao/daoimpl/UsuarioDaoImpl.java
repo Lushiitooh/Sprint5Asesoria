@@ -31,7 +31,7 @@ public class UsuarioDaoImpl implements IUsuario {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from usuarios");
+            objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, correo_electronico, telefono, direccion, id_tipo_usuario, usuario_ingreso, password, fecha_registro, id_cliente, estado_usuario from usuarios");
             while (objResultSet.next()){
                 usuario = new Usuario(objResultSet.getInt(1),
                         objResultSet.getInt(2),
@@ -69,7 +69,7 @@ public class UsuarioDaoImpl implements IUsuario {
         try {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select * from usuarios where id_tipo_usuario ="+tipoUsuario);
+            objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, correo_electronico, telefono, direccion, id_tipo_usuario, usuario_ingreso, password, fecha_registro, id_cliente, estado_usuario from usuarios where id_tipo_usuario ="+tipoUsuario);
             while (objResultSet.next()){
                 usuario = new Usuario(objResultSet.getInt(1),
                         objResultSet.getInt(2),
