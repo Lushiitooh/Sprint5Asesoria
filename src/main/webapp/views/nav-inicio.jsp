@@ -5,9 +5,6 @@
   Time: 17:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #7952b3;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">SGAS</a>
