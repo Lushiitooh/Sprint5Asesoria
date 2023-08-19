@@ -21,15 +21,15 @@ public class CapacitacionDaoImpl implements ICapacitacion {
     @Override
     public List<Capacitacion> listarCapacitacion() {
         List<Capacitacion> listaCapacitaciones = new ArrayList<>();
-        Statement objStatement = null;
-        Connection objConnection = null;
-        ResultSet objResultSet = null;
+        //Statement objStatement = null;
+        //Connection objConnection = null;
+        //ResultSet objResultSet = null;
         Capacitacion capacitacion;
 
         try{
-            objConnection = Conexion.getConexion();
-            objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select id, nombre, duracion, descripcion, fecha_ingreso, estado from capacitaciones");
+            Connection objConnection = Conexion.getConexion();
+            Statement objStatement = objConnection.createStatement();
+            ResultSet objResultSet = objStatement.executeQuery("select id, nombre, duracion, descripcion, fecha_ingreso, estado from capacitaciones");
             while (objResultSet.next()){
                 capacitacion = new Capacitacion(
                         objResultSet.getInt(1),
@@ -38,12 +38,10 @@ public class CapacitacionDaoImpl implements ICapacitacion {
                         objResultSet.getString(4),
                         LocalDateTime.parse(objResultSet.getString(5)),
                         objResultSet.getBoolean(6));
-
                 listaCapacitaciones.add(capacitacion);
-
             }
-            objResultSet.close();
-            objStatement.close();
+           /* objResultSet.close();
+            objStatement.close();*/
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
