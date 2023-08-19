@@ -14,7 +14,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 @WebServlet("/listarCapacitacionSv")
-public class ListarCapacitacionSv {
+public class ListarCapacitacionSv extends HttpServlet{
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -1,8 +1,6 @@
 package com.example.modulo5.controller;
 
-import com.example.modulo5.dao.daoimpl.CapacitacionDaoImpl;
 import com.example.modulo5.dao.daoimpl.TrabajadorDaoImpl;
-import com.example.modulo5.model.Capacitacion;
 import com.example.modulo5.model.Trabajador;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 @WebServlet("/listarTrabajadorSv")
-public class ListarTrabajadorSv extends TrabajadorDaoImpl {
+public class ListarTrabajadorSv extends HttpServlet{
 
         /**
          * @see HttpServlet#HttpServlet()
@@ -39,5 +37,3 @@ public class ListarTrabajadorSv extends TrabajadorDaoImpl {
             request.getRequestDispatcher("views/listarTrabajadores.jsp").forward(request, response);
         }
     }
-
-}
