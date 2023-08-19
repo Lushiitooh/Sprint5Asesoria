@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Trabajador {
     private int id;
     private String rut;
