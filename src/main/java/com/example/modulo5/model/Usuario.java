@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Usuario {
     private int id;
-    private int rut;
+    private int run;
     private String nombres;
     private String apellido1;
     private String apellido2;
