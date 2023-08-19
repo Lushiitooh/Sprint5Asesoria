@@ -3,22 +3,43 @@ package com.example.modulo5.dao.daoimpl;
 import com.example.modulo5.conexion.Conexion;
 import com.example.modulo5.dao.ITarea;
 import com.example.modulo5.model.Tarea;
-import com.example.modulo5.model.Usuario;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TareaDaoImpl implements ITarea {
 
     @Override
-    public Tarea crearTarea(Tarea tarea) {
-        return null;
+    public boolean crearTarea(Tarea tarea) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into tareas(nombre_tarea,descripcion,entregable,fecha_ejecucion,id_estado,id_tipo_tarea,id_asesoria,fecha_ingreso) values ("
+                    +tarea.getNombre_tarea()+","
+                    +tarea.getDescripcion()+","
+                    +tarea.getEntregable()+","
+                    +tarea.getFecha_ejecucion()+","
+                    +tarea.getId_estado()+","
+                    +tarea.getId_tipo_tarea()+","
+                    +tarea.getId_asesoria()+","
+                    +tarea.getFecha_ingreso()+
+                    ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
@@ -124,7 +145,7 @@ public class TareaDaoImpl implements ITarea {
     }
 
     @Override
-    public Tarea actualizarTarea(Tarea tarea) {
+    public boolean actualizarTarea(Tarea tarea) {
         return null;
     }
 
