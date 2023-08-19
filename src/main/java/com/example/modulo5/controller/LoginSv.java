@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 @WebServlet("/LoginSv")
-public class LoginSv {
+public class LoginSv extends HttpServlet{
     private int runInput;
     private String passwordInput ;
     private ILogin usuarioLogin = new LoginDaoImpl();
