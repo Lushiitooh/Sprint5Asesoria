@@ -16,8 +16,37 @@ import java.util.List;
 public class UsuarioDaoImpl implements IUsuario {
 
     @Override
-    public Usuario crearUsuario(Usuario usuario) {
-        return null;
+    public boolean crearUsuario(Usuario usuario) {
+
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into usuarios(id, rut, nombres, apellido1, apellido2, correo_electronico, telefono, direccion, id_tipo_usuario, usuario_ingreso, password, fecha_registro, id_cliente, estado_usuario) values (null," +
+                    usuario.getRun() +","
+                    +usuario.getNombres() +","
+                    +usuario.getApellido1() +","
+                    +usuario.getApellido2() +","
+                    +usuario.getCorreoElectronico()+","
+                    +usuario.getTelefono()+","
+                    +usuario.getDireccion()+","
+                    +usuario.getIdTipoUsuario()+","
+                    +usuario.getUsuarioIngreso()+","
+                    +usuario.getPassword()+","
+                    +usuario.getFechaRegistro()+","
+                    +usuario.getIdCliente()+","
+                    +usuario.isEstado()+
+                    ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
@@ -102,8 +131,25 @@ public class UsuarioDaoImpl implements IUsuario {
     }
 
     @Override
-    public boolean eliminarUsuario(Usuario usuario) {
-        return false;
+    public boolean eliminarUsuario(int idUsuario) {
+
+        boolean eliminado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from usuarios where id ="+idUsuario);
+            eliminado=true;
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminado;
     }
 
     @Override
