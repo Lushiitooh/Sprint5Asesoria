@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class  Trabajador {
+public class Trabajador {
     private int id;
     private String rut;
     private String nombres;
@@ -22,6 +22,4 @@ public class  Trabajador {
     private String cargo;
     private int idCliente;
     private LocalDateTime fechaIngreso;
-
-
 }

@@ -5,8 +5,6 @@
   Time: 17:57
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
 <footer class="mt-3" style="background-color: #7952b3; text-align: center; padding: 20px 0;">
     <h3 class="mt-3" style="color: #fff; ">Búscanos en redes sociales</h3>
     <a href="http://www.youtube.com/recoders" target="_blank" class="rrss me-3"><i class="fa-brands fa-youtube fa-2x"

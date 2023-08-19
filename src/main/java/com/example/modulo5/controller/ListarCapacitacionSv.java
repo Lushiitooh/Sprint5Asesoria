@@ -9,12 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 @WebServlet("/listarCapacitacionSv")
-public class ListarCapacitacionSv {
+public class ListarCapacitacionSv extends HttpServlet{
     /**
      * @see HttpServlet#HttpServlet()
      */
