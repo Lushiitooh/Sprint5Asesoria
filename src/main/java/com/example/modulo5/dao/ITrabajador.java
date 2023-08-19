@@ -5,7 +5,7 @@ import com.example.modulo5.model.Trabajador;
 import java.util.List;
 
 public interface ITrabajador {
-    public Trabajador crearTrabajador(Trabajador trabajador);
+    public Boolean crearTrabajador(Trabajador trabajador);
     public List<Trabajador> listarTrabajador();
     public List<Trabajador> listarTrabajadorId(int idTrabajador);
     public List<Trabajador> listarTrabajadorIdCliente(int idCliente);
