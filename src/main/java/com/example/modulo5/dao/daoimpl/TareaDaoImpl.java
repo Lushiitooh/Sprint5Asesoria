@@ -146,11 +146,53 @@ public class TareaDaoImpl implements ITarea {
 
     @Override
     public boolean actualizarTarea(Tarea tarea) {
-        return null;
+
+        Boolean actualizar = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("update tareas set " +
+                    "nombre_tarea="+tarea.getNombre_tarea()+","+
+                    "descripcion="+tarea.getDescripcion()+","+
+                    "entregable="+tarea.getEntregable()+","+
+                    "fecha_ejecucion="+tarea.getFecha_ejecucion()+","+
+                    "id_estado="+tarea.getId_estado()+","+
+                    "id_tipo_tarea="+tarea.getId_tipo_tarea()+","+
+                    "id_asesoria="+tarea.getId_asesoria()+","+
+                    "fecha_ingreso ="+tarea.getFecha_ingreso()+"where id="+tarea.getId());
+
+            actualizar = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return actualizar;
     }
 
     @Override
     public boolean eliminarTarea(int idTarea) {
-        return false;
+        boolean eliminado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from tareas where id ="+idTarea);
+            eliminado=true;
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminado;
+
     }
+
 }
