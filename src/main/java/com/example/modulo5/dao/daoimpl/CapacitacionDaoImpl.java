@@ -14,8 +14,28 @@ import java.util.List;
 
 public class CapacitacionDaoImpl implements ICapacitacion {
     @Override
-    public Capacitacion crearCapacitacion(Capacitacion capacitacion) {
-        return null;
+    public Boolean crearCapacitacion(Capacitacion capacitacion) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into capacitaciones(id, nombre, duracion, descripcion, fecha_ingreso, estado) values (null,"
+                    +capacitacion.getNombre()+","
+                    +capacitacion.getDuracion()+","
+                    +capacitacion.getDescripcion()+","
+                    +capacitacion.getFechaIngreso()+","
+                    +capacitacion.getEstadoCapacitacion()+
+            ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
@@ -91,11 +111,31 @@ public class CapacitacionDaoImpl implements ICapacitacion {
 
     @Override
     public boolean eliminarCapacitacion(int idCapacitacion) {
-        return false;
+        boolean eliminar = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from capacitaciones where id =" +idCapacitacion);
+            eliminar=true;
+
+            objStatement.close();
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminar;
     }
 
     @Override
     public boolean actualizarEstadoCapacitacion(int idCapacitacion) {
+
+
         return false;
     }
 }

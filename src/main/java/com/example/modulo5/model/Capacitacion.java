@@ -15,5 +15,5 @@ public class Capacitacion {
     private Double duracion;
     private String descripcion;
     private LocalDateTime fechaIngreso;
-    private boolean estadoCapacitacion;
+    private Boolean estadoCapacitacion;
 }
