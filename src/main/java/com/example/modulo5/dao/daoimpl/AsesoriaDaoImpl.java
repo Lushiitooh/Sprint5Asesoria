@@ -16,8 +16,29 @@ import java.util.List;
 
 public class AsesoriaDaoImpl implements IAsesoria {
     @Override
-    public Asesoria crearAsesoria(Asesoria asesoria) {
-        return null;
+    public boolean crearAsesoria(Asesoria asesoria) {
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into asesoria(id, nombre_asesoria, id_tipo_riesgo, descripcion_asesoria, id_cliente_peticion, fecha_ingreso, estado) values (null," +
+                    asesoria.getNombre_asesoria()+","
+                    +asesoria.getId_tipo_riesgo()+","
+                    +asesoria.getDescripcion_asesoria()+","
+                    +asesoria.getId_cliente_peticion()+","
+                    +asesoria.getFecha_ingreso()+","
+                    +asesoria.isEstado()+
+                    ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
