@@ -15,6 +15,8 @@ public class EliminarClienteSV extends HttpServlet {
     public EliminarClienteSV() {
     }
 
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             ClienteDaoImpl clienteDaoImpl = new ClienteDaoImpl();
             int clienteId = 0;
