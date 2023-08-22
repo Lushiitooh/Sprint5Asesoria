@@ -10,14 +10,10 @@
 <%@ include file="nav-inicio.jsp" %>
 
 <div class="container mt-5">
-    <div class="text-center fs-4 fw-bold">Lista de Trabajadores por ID</div>
+    <div class="text-center fs-4 fw-bold">Lista de Trabajadores</div>
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
-            <form method="POST" action="<%= request.getContextPath() %>/listarTrabajadorIdSv">
-                <div class="mb-3">
-                    <label for="trabajadorId" class="form-label">Ingrese el ID del Trabajador:</label>
-                    <input type="text" class="form-control" id="trabajadorId" name="trabajadorId" required>
-                </div>
+            <form method="POST" action="<%= request.getContextPath() %>/listarTrabajadorSv">
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
         </div>
@@ -39,7 +35,6 @@
                     <th>Cargo</th>
                     <th>ID Cliente</th>
                     <th>Fecha de Ingreso</th>
-                    <!-- Agrega más encabezados según tus necesidades -->
                 </tr>
                 </thead>
                 <tbody>
@@ -54,23 +49,16 @@
                     <td><%= trabajador.getCargo() %></td>
                     <td><%= trabajador.getIdCliente() %></td>
                     <td><%= trabajador.getFechaIngreso() %></td>
-                    <!-- Agrega más celdas según tus necesidades -->
                 </tr>
                 <% } %>
                 </tbody>
             </table>
         </div>
     </div>
-    <% } else if (trabajadores == null) { %>
-    <div class="row justify-content-center mt-4">
-        <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">Ocurrió un error al consultar la base de datos.</div>
-        </div>
-    </div>
     <% } else { %>
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">
-            <div class="alert alert-warning" role="alert">No se encontraron trabajadores con ese ID.</div>
+            <div class="alert alert-warning" role="alert">No se encontraron trabajadores en la base de datos.</div>
         </div>
     </div>
     <% } %>
