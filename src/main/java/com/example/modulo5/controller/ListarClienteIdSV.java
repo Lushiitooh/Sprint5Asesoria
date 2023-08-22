@@ -10,12 +10,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/ListarClienteId")
-public class ListarClienteId extends HttpServlet {
+@WebServlet("/ListarClienteIdSV")
+public class ListarClienteIdSV extends HttpServlet {
 
-    public ListarClienteId() { super(); }
+    public ListarClienteIdSV() { super(); }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.getWriter().append("Served at: ").append(request.getContextPath());
