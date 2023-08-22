@@ -107,16 +107,75 @@ public class AsesoriaDaoImpl implements IAsesoria {
 
     @Override
     public Asesoria actualizarAsesoria(Asesoria asesoria) {
+        Connection objConnection = null;
+        Statement objStatement = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute(
+                    "update asesorias set " +
+                    "nombre_asesoria=" + asesoria.getNombre_asesoria() +
+                    ", id_tipo_riesgo=" + asesoria.getId_tipo_riesgo() +
+                    ", descripcion_asesoria=" + asesoria.getDescripcion_asesoria() +
+                    ", id_cliente_peticion=" + asesoria.getId_cliente_peticion() +
+                    ", fecha_ingreso=" + asesoria.getFecha_ingreso() +
+                    ", estado=" + asesoria.isEstado() +
+                    " where id=" + asesoria.getId()
+            );
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return null;
     }
 
     @Override
     public boolean eliminarAsesoria(int idAsesoria) {
-        return false;
+        boolean eliminar = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from asesorias where id =" +idAsesoria);
+            eliminar=true;
+
+            objStatement.close();
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminar;
     }
 
     @Override
     public boolean actualizarEstadoAsesoria(int idAsesoria) {
-        return false;
+        Connection objConnection = null;
+        Statement objStatement = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute(
+                    "update asesorias set " +
+                            "estado=" + true +
+                            " where id=" + idAsesoria
+            );
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
     }
 }
