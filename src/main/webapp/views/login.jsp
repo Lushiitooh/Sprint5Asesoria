@@ -38,6 +38,6 @@
         <button class="btn btn-primary text-white w-100 mt-4 fw-semibold shadow-sm" type="submit">Login</button>
       </form>
     </div>
-    <%@ include file="footer.jsp" %>
+    <jsp:include page="/views/footer.jsp"/>
   </body>
 </html>
