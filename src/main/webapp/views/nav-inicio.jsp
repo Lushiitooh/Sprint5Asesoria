@@ -15,10 +15,13 @@
         <div class="collapse navbar-collapse  pe-5" id="navbarNav">
             <ul class="navbar-nav ms-md-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/index">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="index">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="/LoginSv">Login</a>
+                    <a class="nav-link active" href="LoginSv">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="TareaSv">Listar tareas</a>
                 </li>
             </ul>
         </div>

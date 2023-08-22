@@ -45,15 +45,13 @@ public class TareaDaoImpl implements ITarea {
     @Override
     public List<Tarea> listarTarea() {
         List<Tarea> listatareas = new ArrayList<>();
-        Statement objStatement = null;
-        Connection objConnection = null;
-        ResultSet objResultSet = null;
+
         Tarea tarea;
 
         try {
-            objConnection = Conexion.getConexion();
-            objStatement = objConnection.createStatement();
-            objResultSet = objStatement.executeQuery("select id, nombre_tarea, descripcion, entregable, fecha_ejecucion, id_estado, id_tipo_tarea, id_asesoria, fecha_ingreso from tareas");
+            Connection objConnection = Conexion.getConexion();
+            Statement objStatement = objConnection.createStatement();
+            ResultSet objResultSet = objStatement.executeQuery("select id, nombre_tarea, descripcion, entregable, fecha_ejecucion, id_estado, id_tipo_tarea, id_asesoria, fecha_ingreso from tareas");
             while (objResultSet.next()){
                 tarea = new Tarea(objResultSet.getInt(1), //id
                         objResultSet.getString(2), // nombre tarea
