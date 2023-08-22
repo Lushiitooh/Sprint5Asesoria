@@ -8,7 +8,7 @@ public interface IAccidente {
     public List<Accidente> listarAccidente(int idAccidente);
     public List<Accidente> listarAccidenteCliente(int idCliente);
     public List<Accidente> listarAccidenteTrabajador(int idTrabajador);
-    public Accidente actualizarAccidente(Accidente accidente);
+    public void editarAccidente(Accidente accidente);
     public boolean eliminarAccidente (int idAccidente);
     public boolean actualizarEstadoAccidente (int idAccidente);
 }

@@ -14,6 +14,16 @@
 <%@ include file='header.jsp' %>
 
 <div class="container mt-5" style="min-height: 750px;">
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-12">
+            <form method="GET" action="" id="">
+                <div class="col d-grid mb-3">
+                    <button type="submit" class="btn btn-primary">Ingresar nuevo accidente</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row mb-3">
         <h1 class="text-center mb-3">Listado de Accidentes</h1>
         <div class="col-12 table-responsive">
@@ -38,18 +48,30 @@
                     for (Accidente accidente : listaAccidentes) {
                 %>
                 <tr>
-                    <td hidden><%= accidente.getId() %></td>
+                    <td class="text-center"><%= accidente.getId() %></td>
                     <td><%= accidente.getFechaAccidente() %></td>
                     <td><%= accidente.getHoraAccidente() %></td>
-                    <td><%= accidente.getIdTrabajador() %></td>
+                    <td><%= accidente.getNombreTrabajador() %></td>
                     <td><%= accidente.getTipoAccidente() %></td>
-                    <td><%= accidente.getFechaIngreso() %></td>
+                    <td><%= accidente.getNombreCliente() %></td>
+                    <td class="text-center"><%= accidente.getFechaIngreso() %></td>
                     <td>
-                        <div class="col-sm-12 col-lg-4 d-grid mb-3">
-                            <button id="btnModalEditar" class="btn btn-info" data-bs-toggle="modal" data-bs-target="">Editar</button>
-                        </div>
-                        <div class="col-sm-12 col-lg-4 d-grid mb-3">
-                            <button id="btnModalBorrar" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="">Borrar</button>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-4 d-grid mb-3">
+                                <button class="btn btn-info btnModalEditar" data-bs-toggle="modal" data-bs-target="#modalEditar"
+                                        data-id="<%= accidente.getId() %>"
+                                        data-fecha="<%= accidente.getFechaAccidente() %>"
+                                        data-hora="<%= accidente.getHoraAccidente() %>"
+                                        data-trabajador="<%= accidente.getIdTrabajador() %>"
+                                        data-lugar="<%= accidente.getLugarAccidente() %>"
+                                        data-descripcion="<%= accidente.getDescripcionAccidente() %>"
+                                        data-tipo="<%= accidente.getTipoAccidente() %>"
+                                        data-cliente="<%= accidente.getIdCliente() %>"
+                                        data-fecha-ingreso="<%= accidente.getFechaIngreso() %>">Editar</button>
+                            </div>
+                            <div class="col-sm-12 col-lg-4 d-grid mb-3">
+                                <button id="btnModalBorrar" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="">Borrar</button>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -59,17 +81,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-4 col-sm-12">
-            <form method="GET" action="" id="">
-                <div class="col d-grid mb-3">
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                </div>
-            </form>
-        </div>
-
-
-    </div>
 </div>
 
 <div class="modal fade" id="modalBorrar" tabindex="-1" aria-labelledby="etiquetaModal1" aria-hidden="true">
@@ -80,10 +91,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Confirma la eliminación de la capacitación.
+                Confirma la eliminación del accidente.
             </div>
             <div class="modal-footer">
-                <form method="post" action="EliminarCapacitacionSv" id="formEliminarCapacitacion">
+                <form method="post" action="EliminarAccidenteSv" id="formEliminarAccidente">
                     <input type="text" name="action" value="delete" hidden>
                     <input type="text" name="idDelete" id="idEliminacion" hidden>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
@@ -104,49 +115,59 @@
             <div class="modal-body">
                 <div class="container" style="height: 750px;">
                     <div class="row d-flex justify-content-center justify-content-center">
-                        <div class="col-lg-6 col-sm-12 rounded shadow p-3">
+                        <div class="col-lg-12 col-sm-12 rounded shadow p-3">
                             <form method="post" action="EditarAccidenteSv" id="formEditarAccidente">
-                                <div class="mb-3">
-                                    <label for="inputID" class="form-label">ID Accidente</label>
-                                    <input type="number" class="form-control" id="inputID" name="id" readonly="readonly">
+                                <div class="row">
+                                    <div class="mb-3 col-lg-4">
+                                        <label for="inputID" class="form-label">ID Accidente</label>
+                                        <input type="number" class="form-control" id="inputID" name="id" readonly="readonly">
+                                    </div>
+                                    <div class="mb-3 col-lg-4">
+                                        <label for="inputFechaIng" class="form-label">Fecha de ingreso</label>
+                                        <input type="date" class="form-control" id="inputFechaIng" name="fechaIngreso" readonly="readonly">
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="inputFecha" class="form-label">Fecha</label>
-                                    <input type="text" class="form-control" id="inputFecha" name="fecha">
+                                <div class="row">
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="inputFecha" class="form-label">Fecha del Accidente</label>
+                                        <input type="text" class="form-control" id="inputFecha" name="fecha">
+                                    </div>
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="inputHora" class="form-label">Hora del Accidente</label>
+                                        <input type="text" class="form-control" id="inputHora" name="hora">
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="inputHora" class="form-label">Hora</label>
-                                    <input type="number" class="form-control" id="inputHora" name="hora">
+                                <div class="row">
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="inputCliente" class="form-label">Cliente</label>
+                                        <input type="text" class="form-control" id="inputCliente" name="cliente">
+                                    </div>
+                                    <div class="mb-3 col-lg-6">
+                                        <label for="inputTrabajador" class="form-label">Trabajador accidentado</label>
+                                        <select name="trabajador" id="inputTrabajador" class="form-control">
+                                            <option value="1">1</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="inputTrabajador" class="form-label">Trabajador</label>
-                                    <input type="number" class="form-control" id="inputTrabajador" name="trabajador">
+                                <div class="mb-3 col-lg-12">
+                                    <label for="inputLugar" class="form-label">Lugar del Accidente</label>
+                                    <input type="text" class="form-control" id="inputLugar" name="lugar">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="inputLugar" class="form-label">Lugar Accidente</label>
-                                    <input type="number" class="form-control" id="inputLugar" name="lugar">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputDescripcion" class="form-label">Descripción de la capacitación</label>
-                                    <input type="text" class="form-control" id="inputDescripcion" name="descripcion">
+                                <div class="mb-3 col-lg-12">
+                                    <label for="inputDescripcion" class="form-label">Descripción de los hechos</label>
+                                    <textarea class="form-control" id="inputDescripcion" name="descripcion"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="inputTipoAccidente" class="form-label">Tipo de Accidente</label>
                                     <input type="text" class="form-control" id="inputTipoAccidente" name="tipoAccidente">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="inputCliente" class="form-label">Cliente</label>
-                                    <input type="text" class="form-control" id="inputCliente" name="cliente">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="inputFechaIng" class="form-label">Fecha de ingreso</label>
-                                    <input type="date" class="form-control" id="inputFechaIng" name="fechaIngreso" readonly="readonly">
-                                </div>
-                                <div class="d-grid mb-3">
-                                    <button type="submit" id="btnConfirmarEditar" class="btn btn-success">Guardar</button>
-                                </div>
-                                <div class="d-grid">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                                <div class="row">
+                                    <div class="d-grid col-lg-3">
+                                        <button type="submit" id="btnConfirmarEditar" class="btn btn-success">Guardar</button>
+                                    </div>
+                                    <div class="d-grid col-lg-3">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -190,21 +211,17 @@
                 $('#idEliminacion').val(data[0])
             }
         })
-
-        $('#btnModalEditar').click(function () {
-            var data = table.row('.selected').data()
-            var seleccionadas = table.rows('.selected').data().length
-            if (seleccionadas) {
-                $('#inputID').val(data[0])
-                $('#inputFecha').val(data[1])
-                $('#inputHora').val(data[2])
-                $('#inputTrabajador').val(data[3])
-                $('#inputLugar').val(data[4])
-                $('#inputDescripcion').val(data[5])
-                $('#inputTipoAccidente').val(data[6])
-                $('#inputCliente').val(data[7])
-                $('#inputFechaIng').val(data[8])
-            }
+        $('.btnModalEditar').click(function () {
+            var btn = $(this);
+            $('#inputID').val(btn.data('id'));
+            $('#inputFecha').val(btn.data('fecha'));
+            $('#inputHora').val(btn.data('hora'));
+            $('#inputTrabajador').val(btn.data('trabajador'));
+            $('#inputLugar').val(btn.data('lugar'));
+            $('#inputDescripcion').val(btn.data('descripcion'));
+            $('#inputTipoAccidente').val(btn.data('tipo'));
+            $('#inputCliente').val(btn.data('cliente'));
+            $('#inputFechaIng').val(btn.data('fecha-ingreso'));
         })
         $.validator.addMethod("fechaSuperiorActual", function(value) {
             var fechaIngresada = new Date(value);
