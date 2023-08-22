@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +47,8 @@ public class TareaDaoImpl implements ITarea {
     @Override
     public List<Tarea> listarTarea() {
         List<Tarea> listatareas = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         Tarea tarea;
 
@@ -57,11 +61,12 @@ public class TareaDaoImpl implements ITarea {
                         objResultSet.getString(2), // nombre tarea
                         objResultSet.getString(3), // descripcion
                         objResultSet.getString(4), // entregable
-                        LocalDate.parse(objResultSet.getString(9)), //fecha de ingreso
-                        LocalDate.parse(objResultSet.getString(5)), //fecha de ejecucion
-                        objResultSet.getInt(6), //id estado
+                        LocalDate.parse(objResultSet.getString(5), formatter2), //fecha de ejecucion
+                        LocalDateTime.parse(objResultSet.getString("fecha_ingreso"),formatter), //fecha de ingreso
+                        objResultSet.getInt("id_estado"), //id estado
                         objResultSet.getInt(7), //id tipo tarea
-                        objResultSet.getInt(8) //id asesoria
+                        objResultSet.getInt(8)//id asesoria
+
                         );
                 listatareas.add(tarea);
             }
@@ -92,7 +97,7 @@ public class TareaDaoImpl implements ITarea {
                         objResultSet.getString(3), // descripcion
                         objResultSet.getString(4), // entregable
                         LocalDate.parse(objResultSet.getString(9)), //fecha de ingreso
-                        LocalDate.parse(objResultSet.getString(5)), //fecha de ejecucion
+                        LocalDateTime.parse(objResultSet.getString(5)), //fecha de ejecucion
                         objResultSet.getInt(6), //id estado
                         objResultSet.getInt(7), //id tipo tarea
                         objResultSet.getInt(8) //id asesoria
@@ -126,7 +131,7 @@ public class TareaDaoImpl implements ITarea {
                         objResultSet.getString(3), // descripcion
                         objResultSet.getString(4), // entregable
                         LocalDate.parse(objResultSet.getString(9)), //fecha de ingreso
-                        LocalDate.parse(objResultSet.getString(5)), //fecha de ejecucion
+                        LocalDateTime.parse(objResultSet.getString(5)), //fecha de ejecucion
                         objResultSet.getInt(6), //id estado
                         objResultSet.getInt(7), //id tipo tarea
                         objResultSet.getInt(8) //id asesoria
