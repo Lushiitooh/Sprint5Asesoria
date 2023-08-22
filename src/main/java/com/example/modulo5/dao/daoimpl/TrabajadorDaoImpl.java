@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from trabajadores");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             while (objResultSet.next()) {
                 trabajador = new Trabajador(objResultSet.getInt(1),
                         objResultSet.getString(2),
@@ -65,7 +67,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
                         objResultSet.getString(7),
                         objResultSet.getString(8),
                         objResultSet.getInt(9),
-                        LocalDateTime.parse(objResultSet.getString(10)));
+                        LocalDateTime.parse(objResultSet.getString(10), formatter));
                 listaTrabajadores.add(trabajador);
             }
             objResultSet.close();
@@ -88,6 +90,9 @@ public class TrabajadorDaoImpl implements ITrabajador {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from trabajadores where id =" + idTrabajador);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
             while (objResultSet.next()) {
                 trabajadorId = new Trabajador(objResultSet.getInt(1),
                         objResultSet.getString(2),
@@ -98,7 +103,8 @@ public class TrabajadorDaoImpl implements ITrabajador {
                         objResultSet.getString(7),
                         objResultSet.getString(8),
                         objResultSet.getInt(9),
-                        LocalDateTime.parse(objResultSet.getString(10)));
+                        LocalDateTime.parse(objResultSet.getString(10), formatter)
+                );
                 listaTrabajadoresId.add(trabajadorId);
             }
             objResultSet.close();
@@ -193,7 +199,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
         try{
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
-            objStatement.execute("delete from trabajador where id ="+idTrabajador);
+            objStatement.execute("delete from trabajadores where id ="+idTrabajador);
             eliminado=true;
 
             objStatement.close();
