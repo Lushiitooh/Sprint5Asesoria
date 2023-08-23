@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,14 +54,15 @@ public class AsesoriaDaoImpl implements IAsesoria {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from asesorias");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             while (objResultSet.next()){
                 asesoria = new Asesoria(
                         objResultSet.getInt(1),
                         objResultSet.getString(2),
                         objResultSet.getInt(3),
                         objResultSet.getString(4),
-                        LocalDateTime.parse(objResultSet.getString(5)),
-                        objResultSet.getInt(6),
+                        LocalDateTime.parse(objResultSet.getString(6), formatter),
+                        objResultSet.getInt(5),
                         objResultSet.getBoolean(7));
                 listaAsesorias.add(asesoria);
             }
