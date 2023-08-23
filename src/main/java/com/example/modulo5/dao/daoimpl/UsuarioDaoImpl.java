@@ -84,6 +84,7 @@ public class UsuarioDaoImpl implements IUsuario {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(listaUsuarios);
         return listaUsuarios;
     }
 

@@ -2,6 +2,7 @@ package com.example.modulo5.controller;
 
 import com.example.modulo5.dao.daoimpl.UsuarioDaoImpl;
 import com.example.modulo5.model.Usuario;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +25,9 @@ public class ListarUsuarioSv extends HttpServlet{
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/listarUsuarios.jsp");
+        dispatcher.forward(request,response);
+        //response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
     /**
