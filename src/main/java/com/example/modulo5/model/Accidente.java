@@ -15,10 +15,12 @@ public  class Accidente {
  private LocalDate fechaAccidente;
  private LocalTime horaAccidente;
  private int idTrabajador;
+ private String nombreTrabajador;
  private String lugarAccidente;
  private String descripcionAccidente;
  private String tipoAccidente;
  private int idCliente;
+ private String nombreCliente;
  private LocalDate fechaIngreso;
 
 }
