@@ -161,6 +161,7 @@ public class TrabajadorDaoImpl implements ITrabajador {
                 objConnection = Conexion.getConexion();
                 objStatement = objConnection.createStatement();
                 objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, area, correo_electronico, cargo, id_cliente, fecha_ingreso from trabajadores where rut =" + rutTrabajador);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 while (objResultSet.next()) {
                     trabajadorRut = new Trabajador(objResultSet.getInt(1),
                             objResultSet.getString(2),
@@ -171,7 +172,8 @@ public class TrabajadorDaoImpl implements ITrabajador {
                             objResultSet.getString(7),
                             objResultSet.getString(8),
                             objResultSet.getInt(9),
-                            LocalDateTime.parse(objResultSet.getString(10)));
+                            LocalDateTime.parse(objResultSet.getString(10), formatter)
+                    );
                     listaTrabajadorRut.add(trabajadorRut);
 
                 }
