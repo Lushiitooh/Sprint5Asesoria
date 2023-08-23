@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class ClienteDaoImpl implements ICliente {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select * from clientes");
-
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             while (objResultSet.next()){
                 cliente = new Cliente(objResultSet.getInt(1),
                 objResultSet.getInt(2),
@@ -66,7 +67,7 @@ public class ClienteDaoImpl implements ICliente {
                 objResultSet.getString(5),
                 objResultSet.getInt(6),
                 objResultSet.getString(7),
-                LocalDateTime.parse(objResultSet.getString(8)),
+                LocalDateTime.parse(objResultSet.getString(8),formatter),
                 objResultSet.getBoolean(9));
 
                 listaCliente.add(cliente);
