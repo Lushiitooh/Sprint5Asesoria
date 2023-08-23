@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface IUsuario {
 
-    public Usuario crearUsuario(Usuario usuario);
+    public boolean crearUsuario(Usuario usuario);
     public List<Usuario> listarUsuarios();
     public List<Usuario> listarUsuarioPorTipo(int tipoUsuario);
     public Usuario actualizarUsuario(Usuario usuario);
-    public boolean eliminarUsuario(Usuario usuario);
+    public boolean eliminarUsuario(int idUsuario);
     public boolean actualizarEstadoUsuario(Usuario usuario);
 }

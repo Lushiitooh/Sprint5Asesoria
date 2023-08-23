@@ -10,14 +10,44 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDaoImpl implements IUsuario {
 
     @Override
-    public Usuario crearUsuario(Usuario usuario) {
-        return null;
+    public boolean crearUsuario(Usuario usuario) {
+
+        Boolean creado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+        try {
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("insert into usuarios(id, rut, nombres, apellido1, apellido2, correo_electronico, telefono, direccion, id_tipo_usuario, usuario_ingreso, password, fecha_registro, id_cliente, estado_usuario) values (null," +
+                    usuario.getRun() +","
+                    +usuario.getNombres() +","
+                    +usuario.getApellido1() +","
+                    +usuario.getApellido2() +","
+                    +usuario.getCorreoElectronico()+","
+                    +usuario.getTelefono()+","
+                    +usuario.getDireccion()+","
+                    +usuario.getIdTipoUsuario()+","
+                    +usuario.getUsuarioIngreso()+","
+                    +usuario.getPassword()+","
+                    +usuario.getFechaRegistro()+","
+                    +usuario.getIdCliente()+","
+                    +usuario.isEstado()+
+                    ")");
+            creado = true;
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return creado;
     }
 
     @Override
@@ -32,6 +62,7 @@ public class UsuarioDaoImpl implements IUsuario {
             objConnection = Conexion.getConexion();
             objStatement = objConnection.createStatement();
             objResultSet = objStatement.executeQuery("select id, rut, nombres, apellido1, apellido2, correo_electronico, telefono, direccion, id_tipo_usuario, usuario_ingreso, password, fecha_registro, id_cliente, estado_usuario from usuarios");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             while (objResultSet.next()){
                 usuario = new Usuario(objResultSet.getInt(1),
                         objResultSet.getInt(2),
@@ -44,17 +75,19 @@ public class UsuarioDaoImpl implements IUsuario {
                         objResultSet.getInt(9),
                         objResultSet.getString(10),
                         objResultSet.getString(11),
-                        LocalDateTime.parse(objResultSet.getString(12)),
+                        LocalDateTime.parse(objResultSet.getString(12), formatter),
                         objResultSet.getInt(13),
                         objResultSet.getBoolean(14));
                 listaUsuarios.add(usuario);
             }
+            System.out.println(listaUsuarios);
             objResultSet.close();
             objStatement.close();
             //objConnection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println(listaUsuarios);
         return listaUsuarios;
     }
 
@@ -102,8 +135,25 @@ public class UsuarioDaoImpl implements IUsuario {
     }
 
     @Override
-    public boolean eliminarUsuario(Usuario usuario) {
-        return false;
+    public boolean eliminarUsuario(int idUsuario) {
+
+        boolean eliminado = false;
+        Statement objStatement = null;
+        Connection objConnection = null;
+
+        try{
+            objConnection = Conexion.getConexion();
+            objStatement = objConnection.createStatement();
+            objStatement.execute("delete from usuarios where id ="+idUsuario);
+            eliminado=true;
+
+            objStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return eliminado;
     }
 
     @Override
